@@ -9,7 +9,7 @@ import java.util.Optional;
 public interface MovementRepository
         extends JpaRepository<Movement,Integer> {
 
-    //SELECT s FROM Movement s WHERE s.movementName = name
+    //SELECT s FROM Movement s WHERE s.movementName = firstName
     Optional<Movement> findMovementByName(String name);
 
 }
