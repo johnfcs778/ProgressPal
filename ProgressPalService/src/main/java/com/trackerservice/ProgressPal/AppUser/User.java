@@ -1,21 +1,21 @@
 package com.trackerservice.ProgressPal.AppUser;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 
 @Getter
 @Setter
+@Data
 @EqualsAndHashCode
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 public class User implements UserDetails {
 
@@ -34,23 +34,27 @@ public class User implements UserDetails {
     private String lastName;
     private String email;
     private String password;
-    @Enumerated(EnumType.STRING)
-    private UserRole userRole;
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Collection<UserRole> roles = new ArrayList<>();
     private Boolean locked = false;
     private Boolean enabled = false;
 
-    public User(String firstName, String lastName, String email, String password, UserRole userRole) {
+    public User(String firstName, String lastName, String email, String password, Collection<UserRole> userRoles) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
-        this.userRole = userRole;
+        this.roles = userRoles;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        SimpleGrantedAuthority authority = new SimpleGrantedAuthority(userRole.name());
-        return Collections.singletonList(authority);
+        // TODO: fix this
+        Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
+        getRoles().forEach(role -> {
+           authorities.add(new SimpleGrantedAuthority(role.getName()));
+        });
+        return authorities;
     }
 
     @Override

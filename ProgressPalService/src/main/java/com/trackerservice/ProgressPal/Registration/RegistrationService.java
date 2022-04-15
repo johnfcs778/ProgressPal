@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Collection;
 
 @Service
 @AllArgsConstructor
@@ -32,7 +34,7 @@ public class RegistrationService {
                 request.getLastName(),
                 request.getEmail(),
                 request.getPassword(),
-                UserRole.USER
+                new ArrayList<UserRole>()
         ));
         // TODO: validate email
         String link = "http://localhost:8080/api/v1/registration/confirm?token=" + token;
