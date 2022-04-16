@@ -1,7 +1,7 @@
 import './App.css';
 import Axios from 'axios';
 import Button from 'react-bootstrap/Button';
-import React, {useState} from 'react';
+import React, {useState, createContext} from 'react';
 import WorkoutCard from './WorkoutCard';
 import MovementCard from './MovementCard';
 import 'bootstrap/dist/css/bootstrap.css';
@@ -11,6 +11,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import dumbell from './dumbell.png';
 import movement from './movement.png';
 import Homepage from './Homepage';
+import LoginPage from './LoginPage';
 
 function App() {
 
@@ -18,7 +19,7 @@ function App() {
   const [movementList, setMovementList] = useState([]);
   const [startDate, setStartDate] = useState(new Date());
   const [workoutByDate, setWorkoutByDate] = useState(<MovementCard></MovementCard>);
-  const [currentPage, setCurrentPage] = useState("home");
+  const [currentPage, setCurrentPage] = useState("login");
   const [pagItems, setPagItems] = useState([]);
   const [woPageNum, setWoPageNum] = useState(1);
   const [currentWoIndex, setCurrentWoIndex] = useState(1);
@@ -77,8 +78,7 @@ function App() {
 
   return (
     <div>
-      <Nav className="justify-content-center"
-      >
+      {currentPage !== 'login' && <Nav className="justify-content-center">
         <Nav.Item>
           <Nav.Link  as="button" onClick={()=>{setCurrentPage('home');}}>Home</Nav.Link>
         </Nav.Item>
@@ -88,8 +88,13 @@ function App() {
         <Nav.Item>
           <Nav.Link as="button" onClick={()=>{setCurrentPage('movements');}}>Movements</Nav.Link>
         </Nav.Item>
-      </Nav>
+      </Nav>}
       
+      {/* Login Page */}
+      {currentPage === 'login' && 
+        <LoginPage></LoginPage>
+      }
+
       {/* Home Page */}
       {currentPage === 'home' && 
         <Homepage></Homepage>
