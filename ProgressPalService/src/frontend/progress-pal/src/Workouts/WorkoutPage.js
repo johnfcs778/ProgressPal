@@ -9,8 +9,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import dumbell from '../dumbell.png';
 
-export function WorkoutPage({
-}) {
+const WorkoutPage = () => {
     const [workoutList, setWorkoutList] = useState([]);
     const [currentWoIndex, setCurrentWoIndex] = useState(1);
     const [pagItems, setPagItems] = useState([]);
@@ -112,4 +111,5 @@ export function WorkoutPage({
         {workoutByDate}
       </div>;
 }
-  
+
+export default WorkoutPage;

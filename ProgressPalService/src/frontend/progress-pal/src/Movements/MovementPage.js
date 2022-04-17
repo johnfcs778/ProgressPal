@@ -5,7 +5,7 @@ import Axios from 'axios';
 import { Button, Container, Image, Col, Row} from 'react-bootstrap';
 
 
-export function MovementPage() {
+const MovementPage = () => { 
     const [movementList, setMovementList] = useState([]);
 
     const getMovements = () => {
@@ -48,3 +48,4 @@ export function MovementPage() {
       </div>;
 }
   
+export default MovementPage;

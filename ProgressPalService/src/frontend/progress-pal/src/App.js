@@ -1,5 +1,5 @@
-import { MovementPage } from './Movements/MovementPage';
-import { WorkoutPage } from './Workouts/WorkoutPage';
+import MovementPage from './Movements/MovementPage';
+import WorkoutPage from './Workouts/WorkoutPage';
 import './App.css';
 import React, {useState, createContext} from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
@@ -7,42 +7,50 @@ import { Nav } from 'react-bootstrap';
 import "react-datepicker/dist/react-datepicker.css";
 import Homepage from './Homepage';
 import LoginPage from './Login/LoginPage';
-import {Route, BrowserRouter as Router} from 'react-router-dom';
+import {Route, Routes, useNavigate, useLocation, BrowserRouter as Router} from 'react-router-dom';
+import Login from './Login/LoginPage';
+import ErrorPage from './Error/ErrorPage';
 
 function App() {
 
   const [currentPage, setCurrentPage] = useState("workouts");
+  const navigate = useNavigate();
+  const location = useLocation();
 
   return (
-    <Router>
-      {currentPage !== 'login' && <Nav className="justify-content-center">
+    <React.Fragment>
+       {location.pathname != '/login' && <Nav className="justify-content-center">
         <Nav.Item>
-          <Nav.Link  as="button" onClick={()=>{setCurrentPage('home');}}>Home</Nav.Link>
+          <Nav.Link  as="button" onClick={()=>{navigate('/')}}>Home</Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link as="button" onClick={()=>{setCurrentPage('workouts');}}>Workouts</Nav.Link>
+          <Nav.Link as="button" onClick={()=>{navigate('/workouts')}}>Workouts</Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link as="button" onClick={()=>{setCurrentPage('movements');}}>Movements</Nav.Link>
+          <Nav.Link as="button" onClick={()=>{navigate('/movements')}}>Movements</Nav.Link>
         </Nav.Item>
       </Nav>}
-      
-      {/* Login Page */}
-      {currentPage === 'login' && 
-        <LoginPage></LoginPage>
-      }
+      <Routes>
+ 
+        {/* Login Page */}
+        <Route path='/login' element={<LoginPage />} />
 
-      {/* Home Page */}
-      {currentPage === 'home' && 
-        <Homepage></Homepage>
-      }
+        {/* Home Page */}
+        <Route path='/' element={<Homepage/>} />
 
-      {/* Workouts Page */}
-      {currentPage === 'workouts' && <WorkoutPage />}
+        {/* Error Page */}
+        <Route path='/*' element={<ErrorPage/>} />
 
-      {/* Movements page */}
-      {currentPage === 'movements' && <MovementPage />}
-    </Router>
+        {/* Workouts Page */}
+        <Route path='/workouts' element={<WorkoutPage/>} />
+
+        {/* Movements Page */}
+        <Route path='/movements' element={<MovementPage/>} />
+
+        {/* Login Page */}
+        <Route path='/login' element={<LoginPage />} />
+      </Routes>
+    </React.Fragment>
   );
 }
 
