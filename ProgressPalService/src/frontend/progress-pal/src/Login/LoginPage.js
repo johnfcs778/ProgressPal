@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Axios from 'axios';
+import { useNavigate } from "react-router-dom";
 import "./Login.css";
-import App from "./App.js";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   function validateForm() {
     return email.length > 0 && password.length > 0;
@@ -24,6 +25,11 @@ export default function Login() {
     params.append('password', password);
 
     Axios.post("http://localhost:8080/api/v1/login", params).then((response)=> {
+        if(response['status'] === 200) {
+          navigate('/');
+        } else {
+          // show error
+        }
         console.log(response);
         //console.log(response['data']['access_token']);
     })
