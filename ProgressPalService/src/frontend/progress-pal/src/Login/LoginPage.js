@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import {Alert} from "react-bootstrap";
 import Axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
 
-export default function Login() {
+export default function Login(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -39,6 +40,7 @@ export default function Login() {
     <div className="Login">
       <Form onSubmit={handleSubmit}>
         <Form.Group size="lg" controlId="email">
+        <h2 style={{marginBottom: 20}} >Login to ProgressPal </h2>
           <Form.Label>Email</Form.Label>
           <Form.Control
             autoFocus
@@ -58,6 +60,11 @@ export default function Login() {
         <Button block size="lg" type="submit" disabled={!validateForm()}>
           Login
         </Button>
+
+        <Alert  style={{marginTop: 20}} variant="info">
+          Don't have an account? 
+          <Alert.Link href="/register"> Register.</Alert.Link>
+        </Alert>
       </Form>
     </div>
   );
