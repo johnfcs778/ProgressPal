@@ -12,6 +12,7 @@ jobs:
     permissions:
       contents: read
       packages: write
+      
 
     steps:
     - uses: actions/checkout@v3
@@ -23,6 +24,8 @@ jobs:
         server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
         settings-path: ${{ github.workspace }} # location for the settings.xml file
         
+        run: mvn -B verify --file folder/ProgressPalService/pom.xml    # pom.xml is in the folder directory.
+        
     - name: Cache Maven packages
       uses: actions/cache@v2
       with:
@@ -31,8 +34,8 @@ jobs:
         restore-keys: ${{ runner.os }}-m2
         
     - name: Build with Maven
-      run: mvn -B package --file pom.xml
+      run: mvn -B package --file ProgressPalService/pom.xml
 
     - name: Run tests with Maven
-      run: mvn -B test --file pom.xml
+      run: mvn -B test --file ProgressPalService/pom.xml
   
