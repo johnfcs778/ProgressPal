@@ -10,6 +10,7 @@ import LoginPage from './Login/LoginPage';
 import {Route, Routes, useNavigate, useLocation, BrowserRouter as Router} from 'react-router-dom';
 import Login from './Login/LoginPage';
 import ErrorPage from './Error/ErrorPage';
+import Footer from './Footer/Footer';
 
 function App() {
 
@@ -34,22 +35,18 @@ function App() {
  
         {/* Login Page */}
         <Route path='/login' element={<LoginPage />} />
-
         {/* Home Page */}
         <Route path='/' element={<Homepage/>} />
-
         {/* Error Page */}
         <Route path='/*' element={<ErrorPage/>} />
-
         {/* Workouts Page */}
         <Route path='/workouts' element={<WorkoutPage/>} />
-
         {/* Movements Page */}
         <Route path='/movements' element={<MovementPage/>} />
-
         {/* Login Page */}
         <Route path='/login' element={<LoginPage />} />
       </Routes>
+      <Footer />
     </React.Fragment>
   );
 }
