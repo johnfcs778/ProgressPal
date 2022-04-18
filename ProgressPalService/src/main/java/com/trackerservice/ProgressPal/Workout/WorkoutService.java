@@ -53,6 +53,22 @@ public class WorkoutService {
     }
 
     /**
+     * Gets all movements in the database for a user
+     */
+    public List<Workout> getWorkoutsForUser(int userId) {
+        return mWorkoutRepository.findWorkoutsByUserId(userId);
+    }
+
+    /**
+     * Gets a movement in the database for a user
+     * @return
+     */
+    public Workout getWorkoutForUser(int id, int userId) {
+        return mWorkoutRepository.findWorkoutByIdAndUserId(id, userId)
+                .orElseThrow(() -> new IllegalStateException("Workout doesn't exist for user"));
+    }
+
+    /**
      * Deletes a workout from the database given an id from the request
      * @param id
      */

@@ -2,6 +2,7 @@ package com.trackerservice.ProgressPal.Controllers;
 
 import com.trackerservice.ProgressPal.Workout.Workout;
 import com.trackerservice.ProgressPal.Workout.WorkoutService;
+import org.hibernate.jdbc.Work;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,6 +37,16 @@ public class WorkoutController {
                                           @RequestParam() int day,
                                           @RequestParam() int month ) {
         return mWorkoutService.getWorkoutByDate(year,day,month);
+    }
+
+    @GetMapping(path = "/user/{userId}")
+    public List<Workout> getWorkoutsForUser(@PathVariable("userId") Integer Id) {
+        return mWorkoutService.getWorkoutsForUser(Id);
+    }
+
+    @GetMapping(path = "/user/specific/{userId}")
+    public Workout getWorkoutForUser(@PathVariable("userId") Integer userId, @RequestParam(required = true) int id) {
+        return mWorkoutService.getWorkoutForUser(id, userId);
     }
 
     @PostMapping

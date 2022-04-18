@@ -39,7 +39,7 @@ class WorkoutServiceTest {
 
     @Test
     void addNewWorkout() {
-        Workout workout = new Workout("Push", LocalDate.now(),40.0,"fun",true);
+        Workout workout = new Workout("Push", LocalDate.now(),40.0,"fun",true, 1);
         mTestService.addNewWorkout(workout);
         ArgumentCaptor<Workout> argumentCaptor = ArgumentCaptor.forClass(Workout.class);
         verify(mWorkoutRepository).save(argumentCaptor.capture());
@@ -49,7 +49,7 @@ class WorkoutServiceTest {
 
     @Test
     void addNewWorkoutInvalid() {
-        Workout workout = new Workout("Push", LocalDate.now().plusDays(1),40.0,"fun",true);
+        Workout workout = new Workout("Push", LocalDate.now().plusDays(1),40.0,"fun",true, 1);
         assertThatThrownBy(()-> mTestService.addNewWorkout(workout)).isInstanceOf(IllegalStateException.class);
     }
 

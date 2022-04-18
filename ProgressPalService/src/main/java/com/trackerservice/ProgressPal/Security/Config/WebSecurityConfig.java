@@ -45,6 +45,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         // Override Spring default login path
         customAuthenticationFilter.setFilterProcessesUrl("/api/v1/login");
         http.cors();
+        //http.authorizeRequests().anyRequest().permitAll();
         // going to want to undisable csrf
         http
                 .csrf()
@@ -57,13 +58,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/api/v1/login/**", "/api/v1/token/refresh/**", "/api/v*/registration/**")
                 .permitAll();
-//        http
-//                .authorizeRequests()
-//                .antMatchers("/api/v*/registration/**")
-//                .permitAll()
-//                .anyRequest()
-//                .authenticated().and()
-//                .formLogin();
+
         http
                 .authorizeRequests()
                 .antMatchers(GET, "/api/v1/users/**").hasAuthority("ROLE_USER");

@@ -43,6 +43,8 @@ public class Workout {
     )
     private boolean milestoneReached;
 
+    private int userId;
+
     public Workout() {
     }
 
@@ -50,12 +52,13 @@ public class Workout {
         this.id = id;
     }
 
-    public Workout(String workoutType, LocalDate date, double length, String notes, boolean milestoneReached) {
+    public Workout(String workoutType, LocalDate date, double length, String notes, boolean milestoneReached, int userId) {
         this.workoutType = workoutType;
         this.date = date;
         this.length = length;
         this.notes = notes;
         this.milestoneReached = milestoneReached;
+        this.userId = userId;
     }
 
     public int getId() {
@@ -104,6 +107,14 @@ public class Workout {
 
     public void setMilestoneReached(boolean milestoneReached) {
         this.milestoneReached = milestoneReached;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     @Override

@@ -39,7 +39,8 @@ class ProgressPalServiceApplicationTests {
 			LocalDate.now(),
 			50,
 			"workout",
-			true
+			true,
+				1
 		);
 
 		workoutRepository.save(workout);
@@ -55,7 +56,8 @@ class ProgressPalServiceApplicationTests {
 				LocalDate.now(),
 				50,
 				"workout",
-				true
+				true,
+				1
 		);
 
 		Workout workout2 = new Workout(
@@ -63,7 +65,8 @@ class ProgressPalServiceApplicationTests {
 				LocalDate.now(),
 				50,
 				"workout",
-				true
+				true,
+				1
 		);
 
 		workoutRepository.save(workout);
@@ -80,7 +83,8 @@ class ProgressPalServiceApplicationTests {
 				LocalDate.now(),
 				50,
 				"workout",
-				true
+				true,
+				1
 		);
 
 		workoutRepository.save(workout);
@@ -98,7 +102,8 @@ class ProgressPalServiceApplicationTests {
 				5,
 				200,
 				300,
-				315
+				315,
+				0
 		);
 
 		movementRepository.save(movement);
@@ -114,7 +119,8 @@ class ProgressPalServiceApplicationTests {
 				5,
 				200,
 				300,
-				315
+				315,
+				0
 		);
 
 		Movement  movement2 = new Movement(
@@ -122,7 +128,8 @@ class ProgressPalServiceApplicationTests {
 				5,
 				200,
 				300,
-				315
+				315,
+				0
 		);
 
 		movementRepository.save(movement);
@@ -139,7 +146,8 @@ class ProgressPalServiceApplicationTests {
 				5,
 				200,
 				300,
-				315
+				315,
+				0
 		);
 
 		movementRepository.save(movement);

@@ -26,6 +26,16 @@ public class MovementController {
         return mMovementService.getMovements();
     }
 
+    @GetMapping(path = "/user/{userId}")
+    public List<Movement> getMovementsForUser(@PathVariable("userId") Integer Id) {
+        return mMovementService.getMovementsForUser(Id);
+    }
+
+    @GetMapping(path = "/user/specific/{userId}")
+    public Movement getMovementForUser(@PathVariable("userId") Integer Id, @RequestParam(required = true) String name) {
+        return mMovementService.getMovementForUser(name, Id);
+    }
+
     @PostMapping
     public void addMovement(@RequestBody Movement movement) {
         mMovementService.addNewMovement(movement);
