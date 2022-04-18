@@ -38,7 +38,7 @@ class MovementServiceTest {
 
     @Test
     void addNewMovement() {
-        Movement movement = new Movement("test", 5, 200, 300, 315);
+        Movement movement = new Movement("test", 5, 200, 300, 315, 0);
         mTestService.addNewMovement(movement);
         ArgumentCaptor<Movement> argumentCaptor = ArgumentCaptor.forClass(Movement.class);
         verify(mMovementRepository).save(argumentCaptor.capture());
@@ -48,7 +48,7 @@ class MovementServiceTest {
 
     @Test
     void addMovementInvalid() {
-        Movement movement = new Movement("test", 5, 200, 300, 315);
+        Movement movement = new Movement("test", 5, 200, 300, 315, 0);
         when(mMovementRepository.findMovementByName(any()))
                 .thenReturn(java.util.Optional.of(movement));
         assertThatThrownBy(()-> mTestService.addNewMovement(movement)).isInstanceOf(IllegalStateException.class);

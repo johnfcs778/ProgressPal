@@ -27,6 +27,22 @@ public class MovementService {
     }
 
     /**
+     * Gets all movements in the database for a user
+     */
+    public List<Movement> getMovementsForUser(int userId) {
+        return mMovementRepository.findMovementsByUserId(userId);
+    }
+
+    /**
+     * Gets a movement in the database for a user
+     * @return
+     */
+    public Movement getMovementForUser(String name, int userId) {
+        return mMovementRepository.findMovementByNameAndUserId(name, userId)
+                .orElseThrow(() -> new IllegalStateException("Movement doesn't exist for user"));
+    }
+
+    /**
      * Adds a new movement in the database given the Movement
      * object from the request
      * @param movement

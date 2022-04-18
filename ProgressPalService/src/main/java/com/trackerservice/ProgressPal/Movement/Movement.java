@@ -29,17 +29,19 @@ public class Movement {
     private double repWeight;
     private double oneRepMax;
     private double oneRepMaxGoal;
+    private int userId;
 
     public Movement() {
 
     }
 
-    public Movement(String name, int numReps, double repWeight, double oneRepMax, double oneRepMaxGoal) {
+    public Movement(String name, int numReps, double repWeight, double oneRepMax, double oneRepMaxGoal, int userId) {
         this.name = name;
         this.numReps = numReps;
         this.repWeight = repWeight;
         this.oneRepMax = oneRepMax;
         this.oneRepMaxGoal = oneRepMaxGoal;
+        this.userId = userId;
     }
 
     public int getId() {
@@ -88,5 +90,13 @@ public class Movement {
 
     public void setOneRepMax(double oneRepMax) {
         this.oneRepMax = oneRepMax;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 }

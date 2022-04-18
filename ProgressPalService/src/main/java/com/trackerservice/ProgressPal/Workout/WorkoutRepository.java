@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -25,4 +26,8 @@ public interface WorkoutRepository
     Optional<Workout> findWorkoutById(int id);
 
     Optional<Workout> findWorkoutByDate(LocalDate date);
+
+    List<Workout> findWorkoutsByUserId(int userId);
+
+    Optional<Workout> findWorkoutByIdAndUserId(int Id, int userId);
 }
