@@ -11,6 +11,7 @@ import {Route, Routes, useNavigate, useLocation, BrowserRouter as Router} from '
 import Login from './Login/LoginPage';
 import ErrorPage from './Error/ErrorPage';
 import Footer from './Footer/Footer';
+import RegisterPage from './Register/RegisterPage';
 
 function App() {
 
@@ -20,7 +21,7 @@ function App() {
 
   return (
     <React.Fragment>
-       {location.pathname != '/login' && <Nav className="justify-content-center">
+       {location.pathname != '/login' && location.pathname != '/register' && <Nav className="justify-content-center">
         <Nav.Item>
           <Nav.Link  as="button" onClick={()=>{navigate('/')}}>Home</Nav.Link>
         </Nav.Item>
@@ -45,6 +46,8 @@ function App() {
         <Route path='/movements' element={<MovementPage/>} />
         {/* Login Page */}
         <Route path='/login' element={<LoginPage />} />
+        {/* Register Page */}
+        <Route path='/register' element={<RegisterPage />} />
       </Routes>
       <Footer />
     </React.Fragment>
