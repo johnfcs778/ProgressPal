@@ -16,22 +16,22 @@ import javax.mail.internet.MimeMessage;
 public class EmailService implements EmailSender{
 
     private final static Logger LOGGER = LoggerFactory.getLogger(EmailService.class);
-    private final JavaMailSender mailSender;
+    //private final JavaMailSender mailSender;
 
     @Override
     @Async
     public void send(String to, String email) {
-        try{
-            MimeMessage mimeMessage = mailSender.createMimeMessage();
-            MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, "utf-8");
-            helper.setText(email, true);
-            helper.setTo(to);
-            helper.setSubject("Confirm your email");
-            helper.setFrom("hello@progresspal.com");
-            mailSender.send(mimeMessage);
-        }catch(MessagingException e) {
-            LOGGER.error("Fail to send email", e);
-            throw new IllegalStateException("Failed to send email");
-        }
+//        try{
+//            MimeMessage mimeMessage = mailSender.createMimeMessage();
+//            MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, "utf-8");
+//            helper.setText(email, true);
+//            helper.setTo(to);
+//            helper.setSubject("Confirm your email");
+//            helper.setFrom("hello@progresspal.com");
+//            mailSender.send(mimeMessage);
+//        }catch(MessagingException e) {
+//            LOGGER.error("Fail to send email", e);
+//            throw new IllegalStateException("Failed to send email");
+//        }
     }
 }

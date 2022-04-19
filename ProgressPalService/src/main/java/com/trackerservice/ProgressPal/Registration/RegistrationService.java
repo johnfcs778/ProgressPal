@@ -3,7 +3,7 @@ package com.trackerservice.ProgressPal.Registration;
 import com.trackerservice.ProgressPal.AppUser.User;
 import com.trackerservice.ProgressPal.AppUser.UserRole;
 import com.trackerservice.ProgressPal.AppUser.UserService;
-import com.trackerservice.ProgressPal.Email.EmailSender;
+//import com.trackerservice.ProgressPal.Email.EmailSender;
 import com.trackerservice.ProgressPal.Registration.Token.ConfirmationToken;
 import com.trackerservice.ProgressPal.Registration.Token.ConfirmationTokenService;
 import lombok.AllArgsConstructor;
@@ -21,9 +21,9 @@ public class RegistrationService {
     private final UserService userService;
     private final EmailValidator validator;
     private final ConfirmationTokenService confirmationTokenService;
-    private final EmailSender emailSender;
+    //private final EmailSender emailSender;
 
-    public String register(RegistrationRequest request) {
+    public void register(RegistrationRequest request) {
         boolean isValid = validator
                 .test(request.getEmail());
         if (!isValid) {
@@ -36,11 +36,15 @@ public class RegistrationService {
                 request.getPassword(),
                 new ArrayList<UserRole>()
         ));
-        // TODO: validate email
-        String link = "http://localhost:8080/api/v1/registration/confirm?token=" + token;
-        emailSender.send(request.getEmail(), buildEmail(request.getFirstName() + ' ' + request.getLastName(), link));
 
-        return token;
+        //TODO: eventually remove this when adding email verification back
+        // Automatically enable user
+        userService.enableUser(
+                request.getEmail());
+        // TODO: validate email
+//        String link = "http://localhost:8080/api/v1/registration/confirm?token=" + token;
+//        emailSender.send(request.getEmail(), buildEmail(request.getFirstName() + ' ' + request.getLastName(), link));
+
     }
 
     @Transactional
