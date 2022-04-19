@@ -61,6 +61,7 @@ public class ProgressPalServiceApplication {
 		return new WebMvcConfigurerAdapter() {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
+				// Updated for production
 				registry.addMapping("/**").allowedOrigins("https://progress-pal-front.herokuapp.com");
 			}
 		};
