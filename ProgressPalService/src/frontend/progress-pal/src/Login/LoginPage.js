@@ -25,7 +25,7 @@ export default function Login(props) {
     params.append('email', username);
     params.append('password', password);
 
-    Axios.post("http://localhost:8080/api/v1/login", params).then((response)=> {
+    Axios.post("https://progress-pal.herokuapp.com/api/v1/login", params).then((response)=> {
         if(response['status'] === 200) {
           navigate('/');
         } else {

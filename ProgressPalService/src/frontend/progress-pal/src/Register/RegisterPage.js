@@ -26,7 +26,7 @@ const RegisterPage = () => {
 
       const login = (username, pw) => {
     
-        Axios.post("http://localhost:8080/api/v1/registration", {
+        Axios.post("https://progress-pal.herokuapp.com/api/v1/registration", {
             firstName: firstname,
             lastName : lastname,
             email : email,
@@ -81,7 +81,7 @@ const RegisterPage = () => {
                 />
             </Form.Group>
             <Button block size="lg" type="submit" disabled={!validateForm()}>
-              Login
+              Register
             </Button>
     
             <Alert  style={{marginTop: 20}} variant="info">
