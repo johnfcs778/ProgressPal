@@ -12,12 +12,19 @@ import Login from './Login/LoginPage';
 import ErrorPage from './Error/ErrorPage';
 import Footer from './Footer/Footer';
 import RegisterPage from './Register/RegisterPage';
+import useToken from './useToken';
 
 function App() {
-
+  const {token, setToken} = useToken();
   const [currentPage, setCurrentPage] = useState("workouts");
-  const navigate = useNavigate();
   const location = useLocation();
+  //const [token, setToken] = useState();
+  const navigate = useNavigate();
+
+
+  if(!token) {
+    return <LoginPage setToken={setToken} />
+  }
 
   return (
     <React.Fragment>
@@ -41,9 +48,9 @@ function App() {
         {/* Error Page */}
         <Route path='/*' element={<ErrorPage/>} />
         {/* Workouts Page */}
-        <Route path='/workouts' element={<WorkoutPage/>} />
+        <Route path='/workouts' element={<WorkoutPage token={token}/>} />
         {/* Movements Page */}
-        <Route path='/movements' element={<MovementPage/>} />
+        <Route path='/movements' element={<MovementPage token={token}/>} />
         {/* Login Page */}
         <Route path='/login' element={<LoginPage />} />
         {/* Register Page */}

@@ -5,11 +5,15 @@ import Axios from 'axios';
 import { Button, Container, Image, Col, Row} from 'react-bootstrap';
 
 
-const MovementPage = () => { 
+const MovementPage = (props) => { 
     const [movementList, setMovementList] = useState([]);
 
     const getMovements = () => {
-        Axios.get("http://localhost:8080/api/v1/movements").then((response)=> {
+        Axios.get("http://localhost:8080/api/v1/movements", {
+          headers: {
+            'Authorization': `Bearer ${props.token}` 
+          }
+        }).then((response)=> {
           let list = [];
           response.data.forEach((movement) => {
             list.push(<MovementCard movementData={movement}></MovementCard>);

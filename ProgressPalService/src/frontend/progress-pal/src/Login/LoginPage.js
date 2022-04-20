@@ -4,9 +4,10 @@ import Button from "react-bootstrap/Button";
 import {Alert} from "react-bootstrap";
 import Axios from 'axios';
 import { useNavigate } from "react-router-dom";
+import PropTypes from 'prop-types';
 import "./Login.css";
 
-export default function Login(props) {
+export default function Login({ setToken }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -20,13 +21,16 @@ export default function Login(props) {
     event.preventDefault();
   }
 
-  const login = (username, pw) => {
+  const login = () => {
     const params = new URLSearchParams();
-    params.append('email', username);
+    params.append('email', email);
     params.append('password', password);
 
-    Axios.post("https://progress-pal.herokuapp.com/api/v1/login", params).then((response)=> {
+    Axios.post("http://localhost:8080/api/v1/login", params).then((response)=> {
         if(response['status'] === 200) {
+          if(response['data']['access_token'] !== undefined) {
+            setToken(response['data']['access_token']);
+          }
           navigate('/');
         } else {
           // show error
@@ -69,3 +73,7 @@ export default function Login(props) {
     </div>
   );
 }
+
+Login.propTypes = {
+  setToken: PropTypes.func.isRequired
+};

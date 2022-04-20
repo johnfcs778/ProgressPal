@@ -9,7 +9,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import dumbell from '../dumbell.png';
 
-const WorkoutPage = () => {
+const WorkoutPage = (props) => {
     const [workoutList, setWorkoutList] = useState([]);
     const [currentWoIndex, setCurrentWoIndex] = useState(1);
     const [pagItems, setPagItems] = useState([]);
@@ -18,7 +18,12 @@ const WorkoutPage = () => {
     const [workoutByDate, setWorkoutByDate] = useState(<MovementCard></MovementCard>);
 
     const getWorkouts = (num) => {
-        Axios.get("http://localhost:8080/api/v1/workouts/recent/"+num).then((response)=> {
+      console.log(props.token);
+        Axios.get("http://localhost:8080/api/v1/workouts/recent/"+num, {
+          headers: {
+            'Authorization': `Bearer ${props.token}` 
+          }
+        }).then((response)=> {
           let list = [];
           response.data.forEach((workout) => {
             list.push(<WorkoutCard workoutData={workout}></WorkoutCard>);
@@ -45,6 +50,9 @@ const WorkoutPage = () => {
       const getWorkoutByDate = (date) => {
         setStartDate(date);
         Axios.get("http://localhost:8080/api/v1/workouts/bydate", {
+          headers: {
+            'Authorization': `Bearer ${props.token}` 
+          },
           params: {
             year: date.getFullYear(),
             day: date.getDate(),
