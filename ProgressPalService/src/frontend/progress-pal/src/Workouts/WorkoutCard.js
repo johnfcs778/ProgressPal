@@ -2,14 +2,15 @@ import React from 'react';
 import Card from 'react-bootstrap/Card';
 
 const WorkoutCard = ({workoutData}) => {
+    const options = { year: "numeric", month: "long", day: "numeric" }
     if(workoutData === undefined || Object.keys(workoutData).length === 0) {
         return null;
     } else {
         return (
           <div style={{marginTop: 10, marginBottom: 10}}>
-            <Card style={{ width: '18rem' }}>
+            <Card border="secondary" style={{ width: '18rem' }}>
             <Card.Body>
-              <Card.Title>Date: {workoutData.date}</Card.Title>
+              <Card.Title>Date: {new Date(workoutData.date).toLocaleDateString(undefined, options)}</Card.Title>
               <Card.Subtitle className="mb-2 text-muted">Type: {workoutData.workoutType}</Card.Subtitle>
               <Card.Text>
                 Length: {workoutData.length} minutes

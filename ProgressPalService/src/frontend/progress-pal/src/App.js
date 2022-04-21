@@ -46,7 +46,7 @@ function App() {
         {/* Login Page */}
         <Route path='/login' element={<LoginPage />} />
         {/* Home Page */}
-        <Route path='/' element={<Homepage/>} />
+        <Route path='/' element={<Homepage token={token} userId={userId}/>} />
         {/* Error Page */}
         <Route path='/*' element={<ErrorPage/>} />
         {/* Workouts Page */}

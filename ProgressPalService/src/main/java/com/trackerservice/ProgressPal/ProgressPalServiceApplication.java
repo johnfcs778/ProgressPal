@@ -69,9 +69,9 @@ public class ProgressPalServiceApplication {
 			public void addCorsMappings(CorsRegistry registry) {
 				// Updated for production: https://progress-pal-front.herokuapp.com
 				// Local: http://localhost:3000
-				registry.addMapping("/**").allowedOrigins("https://progress-pal-front.herokuapp.com");
+				//registry.addMapping("/**").allowedOrigins("https://progress-pal-front.herokuapp.com");
 				//registry.addMapping("/**").allowedOrigins("http://progress-pal-front.herokuapp.com");
-				//registry.addMapping("/**").allowedOrigins("http://localhost:3000");
+				registry.addMapping("/**").allowedOrigins("http://localhost:3000");
 				//registry.addMapping("/**").allowedOrigins("http://www.progresspal.xyz");
 			}
 		};

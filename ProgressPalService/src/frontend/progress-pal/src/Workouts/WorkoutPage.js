@@ -22,7 +22,7 @@ const WorkoutPage = (props) => {
 
     const getWorkouts = (num) => {
       console.log(props.token);
-        Axios.get("https://progress-pal.herokuapp.com/api/v1/workouts/recent/user/"+props.userId+"/"+num, {
+        Axios.get("http://localhost:8080/api/v1/workouts/recent/user/"+props.userId+"/"+num, {
           headers: {
             'Authorization': `Bearer ${props.token}` 
           }
@@ -52,7 +52,7 @@ const WorkoutPage = (props) => {
 
       const getWorkoutByDate = (date) => {
         setStartDate(date);
-        Axios.get("https://progress-pal.herokuapp.com/api/v1/workouts/user/bydate/"+props.userId, {
+        Axios.get("http://localhost:8080/api/v1/workouts/user/bydate/"+props.userId, {
           headers: {
             'Authorization': `Bearer ${props.token}` 
           },
@@ -68,7 +68,7 @@ const WorkoutPage = (props) => {
 
       const addWorkout = (workoutType, date, length, notes, milestoneReached) => {
         Axios.post(
-          "https://progress-pal.herokuapp.com/api/v1/workouts/user/" + props.userId,
+          "http://localhost:8080/api/v1/workouts/user/" + props.userId,
           {
             workoutType: workoutType,
             date: date,
