@@ -29,8 +29,7 @@ function Homepage(props) {
       <Container fluid>
         <Row>
           <Col>
-          <Jumbotron >
-          <Container>
+          <Container style={{marginBottom: 70}}>
             <Row className="d-flex align-items-center justify-content-center">
               <h1 style={{marginRight: 20}}>Welcome to Progress Pal!</h1> 
               <Image src={dumbell} rounded height="40" width="40"/>
@@ -39,7 +38,6 @@ function Homepage(props) {
               Here you can view your workout and movement data.
             </p>
           </Container>
-        </Jumbotron>
           </Col>
         </Row>
         <Row>

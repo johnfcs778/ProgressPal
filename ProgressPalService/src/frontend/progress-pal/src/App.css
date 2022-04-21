@@ -46,3 +46,8 @@
   left: 0;
   width: 100%;
 }
+
+.jumbotron{
+  height:auto;
+  padding:5px 0 !important;
+   }

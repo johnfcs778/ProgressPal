@@ -9,7 +9,6 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import dumbell from '../dumbell.png';
 import Popup from "reactjs-popup";
-import "reactjs-popup/dist/index.css";
 import Form from "react-bootstrap/Form";
 
 const WorkoutPage = (props) => {

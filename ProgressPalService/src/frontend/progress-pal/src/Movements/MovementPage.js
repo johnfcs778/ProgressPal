@@ -19,7 +19,14 @@ const MovementPage = (props) => {
     }).then((response) => {
       let list = [];
       response.data.forEach((movement) => {
-        list.push(<MovementCard movementData={movement} getMovements={getMovements} token={props.token} userId={props.userId}></MovementCard>);
+        list.push(
+          <MovementCard
+            movementData={movement}
+            getMovements={getMovements}
+            token={props.token}
+            userId={props.userId}
+          ></MovementCard>
+        );
       });
       setMovementList(list);
     });
@@ -64,113 +71,138 @@ const MovementPage = (props) => {
 
   return (
     <div>
-      <nav className="navbar navbar-light bg-light">
-        <div className="navbar-brand">
-          <Image
-            src={movement}
-            rounded
-            height="40"
-            width="40"
-            style={{
-              marginRight: 10,
-            }}
-          />
-          Movements
-        </div>
-      </nav>
-      <Button
-        id="showMovementsButton"
-        style={{
-          marginLeft: 10,
-        }}
-        variant="primary"
-        onClick={() => {
-          getMovements();
-        }}
-      >
-        {" "}
-        Show Movements
-      </Button>
-      <Container>
-        <Row>
-          <Col>{movementList[0]}</Col>
-          <Col>{movementList[1]}</Col>
-          <Col>{movementList[2]}</Col>
+      <Container fluid>
+        <Row fluid>
+          <Col fluid>
+            <nav className="d-flex align-items-center justify-content-center navbar navbar-light bg-light">
+              <div className="navbar-brand">
+                <Button
+                  id="showMovementsButton"
+                  style={{
+                    marginLeft: 10,
+                    marginRight: 10,
+                  }}
+                  variant="primary"
+                  onClick={() => {
+                    getMovements();
+                  }}
+                >
+                  {" "}
+                  Show Movements
+                </Button>
+                <Image
+                  src={movement}
+                  rounded
+                  height="40"
+                  width="40"
+                  style={{
+                    marginRight: 10,
+                  }}
+                />
+                Movements
+                <Popup
+                  trigger={
+                    <Button
+                      style={{
+                        marginLeft: 10,
+                      }}
+                    >
+                      Add New Movement
+                    </Button>
+                  }
+                  position="right center"
+                  modal
+                  nested
+                >
+                  {(close) => (
+                    <div>
+                      <button
+                        id="closebutton"
+                        className="close"
+                        onClick={close}
+                      >
+                        &times;
+                      </button>
+                      <Form onSubmit={handleSubmit}>
+                        <Form.Group size="lg" controlId="email">
+                          <h2 style={{ marginBottom: 20 }}>
+                            {" "}
+                            Add a new Movement{" "}
+                          </h2>
+                          <Form.Label>
+                            <b>Movement Name</b>
+                          </Form.Label>
+                          <Form.Control
+                            style={{ marginBottom: 20 }}
+                            autoFocus
+                            type="text"
+                            placeholder="Bench Press"
+                          />
+                          <Form.Label>
+                            <b>AMRAP Reps</b>
+                          </Form.Label>
+                          <Form.Control
+                            style={{ marginBottom: 20 }}
+                            autoFocus
+                            type="number"
+                            placeholder={0}
+                          />
+                          <Form.Label>
+                            <b>AMRAP Weight</b>
+                          </Form.Label>
+                          <Form.Control
+                            style={{ marginBottom: 20 }}
+                            autoFocus
+                            type="number"
+                            placeholder={0}
+                          />
+                          <Form.Label>
+                            <b>One Rep Max</b>
+                          </Form.Label>
+                          <Form.Control
+                            style={{ marginBottom: 20 }}
+                            autoFocus
+                            type="number"
+                            placeholder={0}
+                          />
+                          <Form.Label>
+                            <b>One Rep Max Goal</b>
+                          </Form.Label>
+                          <Form.Control
+                            style={{ marginBottom: 20 }}
+                            autoFocus
+                            type="number"
+                            placeholder={0}
+                          />
+                        </Form.Group>
+                        <Button block size="lg" type="submit">
+                          Add
+                        </Button>
+                      </Form>
+                    </div>
+                  )}
+                </Popup>
+              </div>
+            </nav>
+          </Col>
         </Row>
         <Row>
-          <Col>{movementList[3]}</Col>
-          <Col>{movementList[4]}</Col>
-          <Col>{movementList[5]}</Col>
+          <Col>
+            <Container>
+              <Row>
+                <Col>{movementList[0]}</Col>
+                <Col>{movementList[1]}</Col>
+                <Col>{movementList[2]}</Col>
+              </Row>
+              <Row>
+                <Col>{movementList[3]}</Col>
+                <Col>{movementList[4]}</Col>
+                <Col>{movementList[5]}</Col>
+              </Row>
+            </Container>
+          </Col>
         </Row>
       </Container>
-
-      <Popup
-        trigger={<Button>Add New Movement</Button>}
-        position="right center"
-        modal
-        nested
-      >
-        {(close) => (
-          <div>
-            <button id="closebutton" className="close" onClick={close}>
-              &times;
-            </button>
-            <Form onSubmit={handleSubmit}>
-              <Form.Group size="lg" controlId="email">
-                <h2 style={{ marginBottom: 20 }}> Add a new Movement </h2>
-                <Form.Label>
-                  <b>Movement Name</b>
-                </Form.Label>
-                <Form.Control
-                  style={{ marginBottom: 20 }}
-                  autoFocus
-                  type="text"
-                  placeholder="Bench Press"
-                />
-                <Form.Label>
-                  <b>AMRAP Reps</b>
-                </Form.Label>
-                <Form.Control
-                  style={{ marginBottom: 20 }}
-                  autoFocus
-                  type="number"
-                  placeholder={0}
-                />
-                <Form.Label>
-                  <b>AMRAP Weight</b>
-                </Form.Label>
-                <Form.Control
-                  style={{ marginBottom: 20 }}
-                  autoFocus
-                  type="number"
-                  placeholder={0}
-                />
-                <Form.Label>
-                  <b>One Rep Max</b>
-                </Form.Label>
-                <Form.Control
-                  style={{ marginBottom: 20 }}
-                  autoFocus
-                  type="number"
-                  placeholder={0}
-                />
-                <Form.Label>
-                  <b>One Rep Max Goal</b>
-                </Form.Label>
-                <Form.Control
-                  style={{ marginBottom: 20 }}
-                  autoFocus
-                  type="number"
-                  placeholder={0}
-                />
-              </Form.Group>
-              <Button block size="lg" type="submit">
-                Add
-              </Button>
-            </Form>
-          </div>
-        )}
-      </Popup>
     </div>
   );
 };
