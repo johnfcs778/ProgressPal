@@ -21,7 +21,6 @@ public class Movement {
     private int Id;
     @Column(
             name="movement_name",
-            unique = true,
             nullable = false
     )
     private String name;

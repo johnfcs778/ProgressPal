@@ -52,13 +52,13 @@ public class ProgressPalServiceApplication {
 			mWorkoutService.addNewWorkout(new Workout("sdds10", LocalDate.now(), 1, "sdf", true, 1));
 			mWorkoutService.addNewWorkout(new Workout("sdds11", LocalDate.now(), 1, "sdf", true, 1));
 
-			movementService.addNewMovement(new Movement("Fun", 2, 2, 2, 2, 1));
-			movementService.addNewMovement(new Movement("Fun1", 2, 2, 2, 2, 1));
-			movementService.addNewMovement(new Movement("Fun2", 2, 2, 2, 2, 1));
+			movementService.addNewMovementForUser(new Movement("Fun", 2, 2, 2, 2, 1), 1);
+			movementService.addNewMovementForUser(new Movement("Fun1", 2, 2, 2, 2, 1), 1);
+			movementService.addNewMovementForUser(new Movement("Fun2", 2, 2, 2, 2, 1), 1);
 
-			movementService.addNewMovement(new Movement("Fun3", 2, 2, 2, 2, 2));
-			movementService.addNewMovement(new Movement("Fun4", 2, 2, 2, 2, 2));
-			movementService.addNewMovement(new Movement("Fun5", 2, 2, 2, 2, 2));
+			movementService.addNewMovementForUser(new Movement("Fun", 2, 2, 2, 2, 2), 2);
+			movementService.addNewMovementForUser(new Movement("Fun1", 2, 2, 2, 2, 2), 2);
+			movementService.addNewMovementForUser(new Movement("Fun2", 2, 2, 2, 2, 2), 2);
 		};
 	}
 
@@ -69,7 +69,7 @@ public class ProgressPalServiceApplication {
 			public void addCorsMappings(CorsRegistry registry) {
 				// Updated for production: https://progress-pal-front.herokuapp.com
 				// Local: http://localhost:3000
-				registry.addMapping("/**").allowedOrigins("https://progress-pal-front.herokuapp.com");
+				registry.addMapping("/**").allowedOrigins("http://localhost:3000");
 			}
 		};
 	}

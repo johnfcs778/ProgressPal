@@ -59,6 +59,22 @@ public class MovementService {
     }
 
     /**
+     * Adds a new movement in the database given the Movement for a user
+     * object from the request
+     * @param movement
+     */
+    public void addNewMovementForUser(Movement movement, int userId) {
+
+        Optional<Movement> movementByName = mMovementRepository.findMovementByNameAndUserId(movement.getName(), userId);
+        if(movementByName.isPresent()) {
+            throw new IllegalStateException("This movement already exists");
+        }
+        movement.setUserId(userId);
+        mMovementRepository.save(movement);
+
+    }
+
+    /**
      * Deletes a movement from the database given an id from the request
      * @param id
      */

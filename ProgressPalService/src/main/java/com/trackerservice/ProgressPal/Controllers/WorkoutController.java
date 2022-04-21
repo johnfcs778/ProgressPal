@@ -69,6 +69,11 @@ public class WorkoutController {
         mWorkoutService.addNewWorkout(workout);
     }
 
+    @PostMapping(path = "/user/{userId}")
+    public void addWorkoutForUser(@PathVariable("userId") Integer Id, @RequestBody Workout workout) {
+        mWorkoutService.addNewWorkoutForUser(workout, Id);
+    }
+
     @DeleteMapping(path = "{workoutId}")
     public void deleteWorkout(@PathVariable("workoutId") Integer id) {
         mWorkoutService.deleteWorkout(id);

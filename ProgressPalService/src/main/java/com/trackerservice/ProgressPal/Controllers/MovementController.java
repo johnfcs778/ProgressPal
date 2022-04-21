@@ -36,9 +36,9 @@ public class MovementController {
         return mMovementService.getMovementForUser(name, Id);
     }
 
-    @PostMapping
-    public void addMovement(@RequestBody Movement movement) {
-        mMovementService.addNewMovement(movement);
+    @PostMapping(path = "/user/{userId}")
+    public void addMovement(@PathVariable("userId") Integer Id, @RequestBody Movement movement) {
+        mMovementService.addNewMovementForUser(movement, Id);
     }
 
     @DeleteMapping(path = "{movementId}")

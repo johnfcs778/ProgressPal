@@ -53,6 +53,22 @@ public class WorkoutService {
     }
 
     /**
+     * Adds a new workout in the database given the Workout
+     * object from the request
+     * @param workout
+     */
+    public void addNewWorkoutForUser(Workout workout, int userId) {
+        Context context = new Context(new ValidatePost());
+        if(context.execute(new PostWorkoutReq(workout))) {
+            workout.setUserId(userId);
+            mWorkoutRepository.save(workout);
+        } else {
+            throw new IllegalStateException("Workout object invalid");
+        }
+
+    }
+
+    /**
      * Gets all movements in the database for a user
      */
     public List<Workout> getWorkoutsForUser(int userId) {
