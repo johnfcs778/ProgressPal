@@ -15,7 +15,7 @@ const MovementCard = ({ movementData, getMovements, token, userId }) => {
 
   const updateMovement = (name, numReps, repWeight, oneRepMax, oneRepMaxGoal) => {
     Axios.put(
-      "http://localhost:8080/api/v1/movements/user/" + userId + "/" + name,
+      "https://progress-pal.herokuapp.com/api/v1/movements/user/" + userId + "/" + name,
       null,
       {
         params: {

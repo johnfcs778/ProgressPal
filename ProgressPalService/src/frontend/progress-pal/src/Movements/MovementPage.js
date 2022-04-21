@@ -12,7 +12,7 @@ const MovementPage = (props) => {
 
   const getMovements = () => {
     console.log(props.userId);
-    Axios.get("http://localhost:8080/api/v1/movements/user/" + props.userId, {
+    Axios.get("https://progress-pal.herokuapp.com/api/v1/movements/user/" + props.userId, {
       headers: {
         Authorization: `Bearer ${props.token}`,
       },
@@ -27,7 +27,7 @@ const MovementPage = (props) => {
 
   const addMovement = (name, numReps, repWeight, oneRepMax, oneRepMaxGoal) => {
     Axios.post(
-      "http://localhost:8080/api/v1/movements/user/" + props.userId,
+      "https://progress-pal.herokuapp.com/api/v1/movements/user/" + props.userId,
       {
         name: name,
         numReps: numReps,
