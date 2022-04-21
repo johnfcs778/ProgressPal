@@ -8,6 +8,9 @@ import { Dropdown, DropdownButton, Nav, Container, Image, Col, Row, Pagination }
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import dumbell from '../dumbell.png';
+import Popup from "reactjs-popup";
+import "reactjs-popup/dist/index.css";
+import Form from "react-bootstrap/Form";
 
 const WorkoutPage = (props) => {
     const [workoutList, setWorkoutList] = useState([]);
@@ -61,6 +64,43 @@ const WorkoutPage = (props) => {
         }).then((response)=> {
           setWorkoutByDate(<WorkoutCard workoutData={response.data[0]}></WorkoutCard>)
         })
+      }
+
+      const addWorkout = (workoutType, date, length, notes, milestoneReached) => {
+        Axios.post(
+          "http://localhost:8080/api/v1/workouts/user/" + props.userId,
+          {
+            workoutType: workoutType,
+            date: date,
+            length: length,
+            notes: notes,
+            milestoneReached: milestoneReached === 'on' ? true : false,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${props.token}`,
+            },
+          }
+        ).then((response) => {
+          if (response["status"] === 200) {
+            //getWorkouts();
+          } else {
+            // show error
+          }
+          console.log(response);
+        });
+      };
+    
+      function handleSubmit(event) {
+        addWorkout(
+          event.target[0].value,
+          event.target[1].value,
+          event.target[2].value,
+          event.target[3].value,
+          event.target[4].value
+        );
+        event.preventDefault();
+        document.getElementById("closebutton").click();
       }
       
       React.useEffect(()=> {
@@ -117,6 +157,71 @@ const WorkoutPage = (props) => {
         <br />
         <Button variant="primary" onClick={() => setWorkoutByDate([])}> Clear </Button>
         {workoutByDate}
+        <Popup
+        trigger={<Button>Add New Workout</Button>}
+        position="right center"
+        modal
+        nested
+      >
+        {(close) => (
+          <div>
+            <button id="closebutton" className="close" onClick={close}>
+              &times;
+            </button>
+            <Form onSubmit={handleSubmit}>
+              <Form.Group size="lg" controlId="workout">
+                <h2 style={{ marginBottom: 20 }}> Add a new Workout </h2>
+                <Form.Label>
+                  <b>Workout Type</b>
+                </Form.Label>
+                <Form.Control
+                  style={{ marginBottom: 20 }}
+                  autoFocus
+                  type="text"
+                  placeholder="Type"
+                />
+                <Form.Label>
+                  <b>Date</b>
+                </Form.Label>
+                <Form.Control
+                  style={{ marginBottom: 20 }}
+                  autoFocus
+                  type="date"
+                />
+                <Form.Label>
+                  <b>Length</b>
+                </Form.Label>
+                <Form.Control
+                  style={{ marginBottom: 20 }}
+                  autoFocus
+                  type="number"
+                  placeholder={0}
+                />
+                <Form.Label>
+                  <b>Notes</b>
+                </Form.Label>
+                <Form.Control
+                  style={{ marginBottom: 20 }}
+                  autoFocus
+                  type="text"
+                  placeholder=""
+                />
+                <Form.Label>
+                  <b>Milestone Reached?</b>
+                </Form.Label>
+                <Form.Control
+                  style={{ marginBottom: 20 }}
+                  autoFocus
+                  type="checkbox"
+                />
+              </Form.Group>
+              <Button block size="lg" type="submit">
+                Add
+              </Button>
+            </Form>
+          </div>
+        )}
+      </Popup>
       </div>;
 }
 
