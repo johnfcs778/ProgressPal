@@ -13,9 +13,11 @@ import ErrorPage from './Error/ErrorPage';
 import Footer from './Footer/Footer';
 import RegisterPage from './Register/RegisterPage';
 import useToken from './useToken';
+import {useUserInfo} from './useUserInfo';
 
 function App() {
   const {token, setToken} = useToken();
+  const {userId, setUserId} = useUserInfo();
   const [currentPage, setCurrentPage] = useState("workouts");
   const location = useLocation();
   //const [token, setToken] = useState();
@@ -23,7 +25,7 @@ function App() {
 
 
   if(!token) {
-    return <LoginPage setToken={setToken} />
+    return <LoginPage setToken={setToken} setUserId = {setUserId} />
   }
 
   return (
@@ -48,9 +50,9 @@ function App() {
         {/* Error Page */}
         <Route path='/*' element={<ErrorPage/>} />
         {/* Workouts Page */}
-        <Route path='/workouts' element={<WorkoutPage token={token}/>} />
+        <Route path='/workouts' element={<WorkoutPage token={token} userId={userId}/>} />
         {/* Movements Page */}
-        <Route path='/movements' element={<MovementPage token={token}/>} />
+        <Route path='/movements' element={<MovementPage token={token} userId={userId}/>} />
         {/* Login Page */}
         <Route path='/login' element={<LoginPage />} />
         {/* Register Page */}

@@ -135,4 +135,42 @@ public class WorkoutService {
             return null;
         }
     }
+
+    /**
+     * Gets the {number} most recent workouts in the database for a User
+     * @param number
+     * @return
+     */
+    public List<Workout> getRecentWorkoutsForUser(Integer number, Integer userId) {
+
+        // Get whole list of workouts
+        List<Workout> wList =  mWorkoutRepository.findWorkoutsByUserId(userId);
+
+        // Sort the list by date descending
+        wList.sort(Comparator.comparing(Workout::getDate).reversed());
+
+        //TODO: optimize this, just grab from database by userID
+//        wList = wList.stream()
+//                .filter(workout -> workout.getUserId() == userId)
+//                .collect(Collectors.toList());
+
+        // return the first x in the list
+        return wList.stream().limit(number).collect(Collectors.toList());
+    }
+
+    /**
+     * Gets a specific workout for a given date for a user, returns null if none exists
+     * @param year
+     * @param day
+     * @param month
+     * @return
+     */
+    public List<Workout> getWorkoutsByDateForUser(int year, int day, int month, Integer userId) {
+        List<Workout> workouts = mWorkoutRepository.findWorkoutsByDateAndUserId(LocalDate.of(year, month, day), userId);
+        if(workouts.size() > 0) {
+            return workouts;
+        } else {
+            return null;
+        }
+    }
 }

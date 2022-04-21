@@ -27,6 +27,8 @@ public interface WorkoutRepository
 
     Optional<Workout> findWorkoutByDate(LocalDate date);
 
+    List<Workout> findWorkoutsByDateAndUserId(LocalDate date, int userId);
+
     List<Workout> findWorkoutsByUserId(int userId);
 
     Optional<Workout> findWorkoutByIdAndUserId(int Id, int userId);

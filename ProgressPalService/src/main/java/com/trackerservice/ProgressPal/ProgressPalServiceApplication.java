@@ -46,6 +46,12 @@ public class ProgressPalServiceApplication {
 			mWorkoutService.addNewWorkout(new Workout("sdds4", LocalDate.now(), 1, "sdf", true, 2));
 			mWorkoutService.addNewWorkout(new Workout("sdds5", LocalDate.now(), 1, "sdf", true, 2));
 			mWorkoutService.addNewWorkout(new Workout("sdds6", LocalDate.now(), 1, "sdf", true, 2));
+			mWorkoutService.addNewWorkout(new Workout("sdds7", LocalDate.of(2022,4,18), 1, "sdf", true, 1));
+			mWorkoutService.addNewWorkout(new Workout("sdds8", LocalDate.now(), 1, "sdf", true, 1));
+			mWorkoutService.addNewWorkout(new Workout("sdds9", LocalDate.now(), 1, "sdf", true, 1));
+			mWorkoutService.addNewWorkout(new Workout("sdds10", LocalDate.now(), 1, "sdf", true, 1));
+			mWorkoutService.addNewWorkout(new Workout("sdds11", LocalDate.now(), 1, "sdf", true, 1));
+
 			movementService.addNewMovement(new Movement("Fun", 2, 2, 2, 2, 1));
 			movementService.addNewMovement(new Movement("Fun1", 2, 2, 2, 2, 1));
 			movementService.addNewMovement(new Movement("Fun2", 2, 2, 2, 2, 1));
@@ -62,7 +68,8 @@ public class ProgressPalServiceApplication {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
 				// Updated for production: https://progress-pal-front.herokuapp.com
-				registry.addMapping("/**").allowedOrigins("http://localhost:3000");
+				// Local: http://localhost:3000
+				registry.addMapping("/**").allowedOrigins("https://progress-pal-front.herokuapp.com");
 			}
 		};
 	}

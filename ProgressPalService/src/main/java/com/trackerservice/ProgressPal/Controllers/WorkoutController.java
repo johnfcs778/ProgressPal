@@ -32,6 +32,21 @@ public class WorkoutController {
         return mWorkoutService.getRecentWorkouts(number);
     }
 
+    // Get Recent workouts for User
+    @GetMapping("/recent/user/{userId}/{number}")
+    public List<Workout> getRecentWorkoutsForUser(@PathVariable("userId") Integer userId, @PathVariable("number") Integer number) {
+        return mWorkoutService.getRecentWorkoutsForUser(number, userId);
+    }
+
+    // Get workouts by date for User
+    @GetMapping("/user/bydate/{userId}")
+    public List<Workout> getWorkoutByDateForUser(@PathVariable("userId") Integer userId,
+                                           @RequestParam() int year,
+                                    @RequestParam() int day,
+                                    @RequestParam() int month ) {
+        return mWorkoutService.getWorkoutsByDateForUser(year,day,month, userId);
+    }
+
     @GetMapping("/bydate")
     public Workout getWorkoutByDate(@RequestParam() int year,
                                           @RequestParam() int day,

@@ -9,7 +9,8 @@ const MovementPage = (props) => {
     const [movementList, setMovementList] = useState([]);
 
     const getMovements = () => {
-        Axios.get("http://localhost:8080/api/v1/movements", {
+        console.log(props.userId);
+        Axios.get("http://progress-pal-front.herokuapp.com/api/v1/movements/user/"+props.userId, {
           headers: {
             'Authorization': `Bearer ${props.token}` 
           }

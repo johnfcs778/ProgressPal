@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import PropTypes from 'prop-types';
 import "./Login.css";
 
-export default function Login({ setToken }) {
+export default function Login({ setToken, setUserId }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -26,10 +26,11 @@ export default function Login({ setToken }) {
     params.append('email', email);
     params.append('password', password);
 
-    Axios.post("http://localhost:8080/api/v1/login", params).then((response)=> {
+    Axios.post("http://progress-pal-front.herokuapp.com/api/v1/login", params).then((response)=> {
         if(response['status'] === 200) {
           if(response['data']['access_token'] !== undefined) {
             setToken(response['data']['access_token']);
+            setUserId(response['data']['userId']);
           }
           navigate('/');
         } else {
@@ -75,5 +76,6 @@ export default function Login({ setToken }) {
 }
 
 Login.propTypes = {
-  setToken: PropTypes.func.isRequired
+  setToken: PropTypes.func.isRequired,
+  setUserId: PropTypes.func.isRequired
 };
