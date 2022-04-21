@@ -3,7 +3,7 @@
 The idea of ProgressPal is to provide a more focused workout tracking application for strength training. Users will be able to input data for workouts as well as specific movements and their movement milestones. Movement goals will be a future iteration of the service. The Progress Pal Service API is the backend api for this application. With the progresspal service api, clients can GET,POST,PUT, and DELETE to the workout service to insert, update, get, and remove both workout and movement data. This service is built with Java Spring Boot, using Spring Data JPA for Entity database mapping using Hibernate. The database used is a MySql database. 
 
 ## Authentication
-Currently there is no authentication built into progresspal service. This will be added in the future using OAuth 2.0.
+Currently users can register and login securely using backend infrastructure supported by Spring Security.
 
 ## Endpoints
 
