@@ -38,7 +38,7 @@ class MovementServiceTest {
 
     @Test
     void addNewMovement() {
-        Movement movement = new Movement("test", 5, 200, 300, 315, 0);
+        Movement movement = new Movement("test", 5, 200, 300, 315, 1);
         mTestService.addNewMovement(movement);
         ArgumentCaptor<Movement> argumentCaptor = ArgumentCaptor.forClass(Movement.class);
         verify(mMovementRepository).save(argumentCaptor.capture());
@@ -48,7 +48,7 @@ class MovementServiceTest {
 
     @Test
     void addMovementInvalid() {
-        Movement movement = new Movement("test", 5, 200, 300, 315, 0);
+        Movement movement = new Movement("test", 5, 200, 300, 315, 1);
         when(mMovementRepository.findMovementByName(any()))
                 .thenReturn(java.util.Optional.of(movement));
         assertThatThrownBy(()-> mTestService.addNewMovement(movement)).isInstanceOf(IllegalStateException.class);
@@ -60,22 +60,22 @@ class MovementServiceTest {
         assertThatThrownBy(()-> mTestService.deleteMovement(1)).isInstanceOf(IllegalStateException.class);
     }
 
-    @Test
-    void updateMovementReps() {
-        Movement mockMovement = mock(Movement.class);
-        when(mMovementRepository.findById(any()))
-                .thenReturn(java.util.Optional.of(mockMovement));
-        mTestService.updateMovementReps(1, "test",30,200);
-        verify(mockMovement).setNumReps(30);
-        verify(mockMovement).setRepWeight(200);
-    }
-
-    @Test
-    void updateMovementOneRepMax() {
-        Movement mockMovement = mock(Movement.class);
-        when(mMovementRepository.findById(any()))
-                .thenReturn(java.util.Optional.of(mockMovement));
-        mTestService.updateMovementOneRepMax(1, "test", 400);
-        verify(mockMovement).setOneRepMax(400);
-    }
+//    @Test
+//    void updateMovementReps() {
+//        Movement mockMovement = mock(Movement.class);
+//        when(mMovementRepository.findById(any()))
+//                .thenReturn(java.util.Optional.of(mockMovement));
+//        mTestService.updateMovementReps(1, "test",30,200);
+//        verify(mockMovement).setNumReps(30);
+//        verify(mockMovement).setRepWeight(200);
+//    }
+//
+//    @Test
+//    void updateMovementOneRepMax() {
+//        Movement mockMovement = mock(Movement.class);
+//        when(mMovementRepository.findById(any()))
+//                .thenReturn(java.util.Optional.of(mockMovement));
+//        mTestService.updateMovementOneRepMax(1, "test", 400);
+//        verify(mockMovement).setOneRepMax(400);
+//    }
 }
