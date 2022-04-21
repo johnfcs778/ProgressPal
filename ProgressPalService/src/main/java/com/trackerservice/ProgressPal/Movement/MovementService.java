@@ -89,15 +89,16 @@ public class MovementService {
     /**
      * Updates a movement in the database at the given identifier and
      * updates the numReps and repWeight values
-     * @param Id
+     * @param name
+     * @param userId
      * @param numReps
      * @param repWeight
      */
     @Transactional
     // Transactional annotation allows modification of object to directly update in db
-    public void updateMovementReps(Integer Id, int numReps, double repWeight) {
-        Movement movement = mMovementRepository.findById(Id)
-                .orElseThrow(() -> new IllegalStateException("Movement Id doesn't exist"));
+    public void updateMovementReps(int userId, String name, int numReps, double repWeight) {
+        Movement movement = mMovementRepository.findMovementByNameAndUserId(name, userId)
+                .orElseThrow(() -> new IllegalStateException("Movement doesn't exist"));
 
         movement.setNumReps(numReps);
 
@@ -108,14 +109,15 @@ public class MovementService {
     /**
      * Updates a movements in the database at the given identifier and
      * updates the oneRepMax
-     * @param Id
+     * @param name
+     * @param userId
      * @param oneRepMax
      */
     @Transactional
     // Transactional annotation allows modification of object to directly update in db
-    public void updateMovementOneRepMax(Integer Id, double oneRepMax) {
-        Movement movement = mMovementRepository.findById(Id)
-                .orElseThrow(() -> new IllegalStateException("Movement Id doesn't exist"));
+    public void updateMovementOneRepMax(int userId, String name, double oneRepMax) {
+        Movement movement = mMovementRepository.findMovementByNameAndUserId(name, userId)
+                .orElseThrow(() -> new IllegalStateException("Movement doesn't exist"));
 
         movement.setOneRepMax(oneRepMax);
 
@@ -124,14 +126,15 @@ public class MovementService {
     /**
      * Updates a movements in the database at the given identifier and
      * updates the oneRepMax
-     * @param Id
+     * @param name
+     * @param userId
      * @param oneRepMaxGoal
      */
     @Transactional
     // Transactional annotation allows modification of object to directly update in db
-    public void updateMovementOneRepMaxGoal(Integer Id, double oneRepMaxGoal) {
-        Movement movement = mMovementRepository.findById(Id)
-                .orElseThrow(() -> new IllegalStateException("Movement Id doesn't exist"));
+    public void updateMovementOneRepMaxGoal(int userId, String name, double oneRepMaxGoal) {
+        Movement movement = mMovementRepository.findMovementByNameAndUserId(name, userId)
+                .orElseThrow(() -> new IllegalStateException("Movement doesn't exist"));
 
         movement.setOneRepMaxGoal(oneRepMaxGoal);
 

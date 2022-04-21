@@ -65,7 +65,7 @@ class MovementServiceTest {
         Movement mockMovement = mock(Movement.class);
         when(mMovementRepository.findById(any()))
                 .thenReturn(java.util.Optional.of(mockMovement));
-        mTestService.updateMovementReps(1,30,200);
+        mTestService.updateMovementReps(1, "test",30,200);
         verify(mockMovement).setNumReps(30);
         verify(mockMovement).setRepWeight(200);
     }
@@ -75,7 +75,7 @@ class MovementServiceTest {
         Movement mockMovement = mock(Movement.class);
         when(mMovementRepository.findById(any()))
                 .thenReturn(java.util.Optional.of(mockMovement));
-        mTestService.updateMovementOneRepMax(1,400);
+        mTestService.updateMovementOneRepMax(1, "test", 400);
         verify(mockMovement).setOneRepMax(400);
     }
 }

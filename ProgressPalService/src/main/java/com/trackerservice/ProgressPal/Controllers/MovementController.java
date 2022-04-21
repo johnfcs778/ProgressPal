@@ -46,18 +46,19 @@ public class MovementController {
         mMovementService.deleteMovement(id);
     }
 
-    @PutMapping(path = "{movementId}")
-    public void updateMovement(@PathVariable("movementId") Integer Id,
+    @PutMapping(path = "/user/{userId}/{movementName}")
+    public void updateMovement(@PathVariable("userId") Integer userId,
+                               @PathVariable("movementName") String movementName,
                               @RequestParam(required = false) Integer numReps,
                               @RequestParam(required = false) Double repWeight,
                               @RequestParam(required = false) Double oneRepMax,
                               @RequestParam(required = false) Double oneRepMaxGoal) {
         if(oneRepMax != null) {
-            mMovementService.updateMovementOneRepMax(Id, oneRepMax);
+            mMovementService.updateMovementOneRepMax(userId, movementName, oneRepMax);
         } else if(repWeight != null && numReps != null) {
-            mMovementService.updateMovementReps(Id, numReps, repWeight);
+            mMovementService.updateMovementReps(userId, movementName, numReps, repWeight);
         } else if(oneRepMaxGoal != null) {
-            mMovementService.updateMovementOneRepMaxGoal(Id, oneRepMaxGoal);
+            mMovementService.updateMovementOneRepMaxGoal(userId, movementName, oneRepMaxGoal);
         }
         else {
             throw new IllegalStateException("Either one rep max OR repWeight & numReps OR oneRepMaxGoal must be present");
