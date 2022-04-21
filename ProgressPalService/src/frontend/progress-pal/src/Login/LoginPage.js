@@ -26,7 +26,7 @@ export default function Login({ setToken, setUserId }) {
     params.append('email', email);
     params.append('password', password);
 
-    Axios.post("http://progress-pal-front.herokuapp.com/api/v1/login", params).then((response)=> {
+    Axios.post("https://progress-pal-front.herokuapp.com/api/v1/login", params).then((response)=> {
         if(response['status'] === 200) {
           if(response['data']['access_token'] !== undefined) {
             setToken(response['data']['access_token']);

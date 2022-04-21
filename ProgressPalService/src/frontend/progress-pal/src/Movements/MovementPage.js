@@ -10,7 +10,7 @@ const MovementPage = (props) => {
 
     const getMovements = () => {
         console.log(props.userId);
-        Axios.get("http://progress-pal-front.herokuapp.com/api/v1/movements/user/"+props.userId, {
+        Axios.get("https://progress-pal-front.herokuapp.com/api/v1/movements/user/"+props.userId, {
           headers: {
             'Authorization': `Bearer ${props.token}` 
           }

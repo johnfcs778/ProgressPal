@@ -26,7 +26,7 @@ const RegisterPage = () => {
 
       const login = (username, pw) => {
     
-        Axios.post("http://progress-pal-front.herokuapp.com/api/v1/registration", {
+        Axios.post("https://progress-pal-front.herokuapp.com/api/v1/registration", {
             firstName: firstname,
             lastName : lastname,
             email : email,
