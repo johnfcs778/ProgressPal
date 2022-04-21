@@ -2,7 +2,7 @@ import React from 'react';
 import Card from 'react-bootstrap/Card';
 
 const WorkoutCard = ({workoutData}) => {
-    const options = { year: "numeric", month: "long", day: "numeric" }
+    const options = { year: "numeric", month: "long", day: "numeric", timeZone: 'UTC' }
     if(workoutData === undefined || Object.keys(workoutData).length === 0) {
         return null;
     } else {
