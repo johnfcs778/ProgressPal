@@ -24,7 +24,7 @@ function App() {
   const navigate = useNavigate();
 
 
-  if(!token) {
+  if(!token && location.pathname != '/register') {
     return <LoginPage setToken={setToken} setUserId = {setUserId} />
   }
 
